@@ -59,7 +59,7 @@ if 'player_data.csv' not in os.listdir():
         writer = csv.writer(csvfile)
         writer.writerow(headers)
 
-with open('player_data.csv', 'a', newline='') as csvfile:
+with open('player_data.csv', 'a', newline='', encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
     for element in elements:
         element_id = element['id']
@@ -67,9 +67,9 @@ with open('player_data.csv', 'a', newline='') as csvfile:
         for season in element_historical_seasons:
             row = []
             for field in selected_fields_from_element_data:
-                row.append(element[field])
+                row.append(str(element[field]))
             for field in selected_fields_from_historical_data:
-                row.append(season[field])
+                row.append(str(season[field]))
             print('Writing data for', element['first_name'], element['second_name'], 'Season', season['season_name'])
-            row = [str(s).encode('utf-8') for s in row]
+#            row = [s.encode('ascii', 'replace') if type(s) is str else s for s in row]
             writer.writerow(row)
