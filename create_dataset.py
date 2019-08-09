@@ -71,5 +71,4 @@ with open('player_data.csv', 'a', newline='', encoding='utf-8') as csvfile:
             for field in selected_fields_from_historical_data:
                 row.append(str(season[field]))
             print('Writing data for', element['first_name'], element['second_name'], 'Season', season['season_name'])
-#            row = [s.encode('ascii', 'replace') if type(s) is str else s for s in row]
             writer.writerow(row)
